@@ -29,12 +29,8 @@ vector<string> categorize(string given) {
         result.push_back(collect);
         result.push_back(")");
       break;
-      case '(':
-        result.push_back("(");
-      break;
       default:
-        cout << "error in categorize\n";
-        exit(0);
+        result.push_back(string(1, *foo));
     }
     foo += 1;
   }
