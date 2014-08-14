@@ -22,11 +22,14 @@ vector<string> categorize(string given) {
       collect += *foo;
     else switch(*foo) {
       case ' ':
-        result.push_back(collect);
-        collect = "";
+        if(collect != "") {
+          result.push_back(collect);
+          collect = "";
+        }
       break;
       case ')':
-        result.push_back(collect);
+        if(collect != "")
+          result.push_back(collect);
         result.push_back(")");
       break;
       default:
@@ -41,7 +44,7 @@ void match(string token, vector<string>& given) {
   if(given.at(0) == token)
     given.erase(given.begin());
   else {
-    cout << "error in match '"
+    cout << "error, expected '"
          << token << "'\n";
     exit(0);
   }
