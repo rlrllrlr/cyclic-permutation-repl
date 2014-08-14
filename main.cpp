@@ -14,7 +14,7 @@ int main(void) {
     data = cycle(sorted);
     data_out = computeCycle(data);
     vector<vector<int> > hist;
-    hist.push_back(data);
+    hist.push_back(genOrdList(data));
     hist.push_back(data_out);
     cout << endl << prettyPerm(hist)
          << endl << endl;
