@@ -62,7 +62,8 @@ vector<int> series(vector<string>& given) {
       return nums;
     }
     else {
-      cout << "error in series\n";
+      cout << "error in series, unexpected '"
+           << *git << "'\n";
       exit(0);
     }
   }
