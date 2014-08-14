@@ -8,7 +8,7 @@ using namespace std;
 bool isInt(string given) {
   string::iterator foo = given.begin();
   for(; foo != given.end(); ++foo)
-    if(!(*foo < 58 && *foo > 47))
+    if(!isdigit(*foo))
       return false;
   return true;
 }
