@@ -1,13 +1,16 @@
 #include <iostream>
 #include <vector>
-
+#include <algorithm>
 using namespace std;
 
-void swap(int &alpha, int &beta) {
-  if(alpha == beta) return;
-  alpha = alpha ^ beta;
-  beta  = alpha ^ beta;
-  alpha = alpha ^ beta;
+void swap(vector<int> &given, int alpha, int beta) {
+  vector<int>::iterator ait, bit;
+  ait = find(given.begin(), given.end(), alpha);
+  bit = find(given.begin(), given.end(), beta);
+
+  *ait = *ait ^ *bit;
+  *bit = *ait ^ *bit;
+  *ait = *ait ^ *bit;
 }
 
 vector<int> genOrdList(vector<int> given) {
@@ -25,11 +28,11 @@ vector<int> genOrdList(vector<int> given) {
 
 vector<int> computeCycle(vector<int> given) {
   //create ordered list (min, min+1, ..., max)
-  vector<int> result = genOrdList(given);
+  vector<int> ordered = genOrdList(given);
   //permute ordered list
   /* (a b c ... z) = (a z)(a y)...(a b) */
-  vector<int>::reverse_iterator rit = result.rbegin();
-  for(; rit != result.rend()-1; ++rit)
-    swap(*rit, result.at(0));
-  return result;
+  vector<int>::iterator git = given.begin()+1;
+  for(; git != given.end(); ++git)
+    swap(ordered, given.at(0), *git);
+  return ordered;
 }
